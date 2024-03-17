@@ -74,8 +74,19 @@
                     In determining the output function \(y\), the graphical structure \(G\) on the input functions may be known from domain knowledge and can possibly be directly incorporated to learn \(F\). 
                     A more interesting case is when \(G\) is unknown and needs to be learned along with \(F\). 
                     Learning the graph structure \(G\) would help to discover interactions among \(z_i\)'s which facilitate predicting \(y\). 
-                    When the number of input functions \(z_1,z_2,\dots,z_p\) grow larger, the associated graph \(G\) might also become dense with many edges and incorporating such dense \(G\) might lead to computational difficulties and would also lead to spurious connections/edges which lack interpretability. 
+                    When the number of input functions \(z_1,z_2,\dots,z_p\) grow larger, the associated graph \(G\) might also become dense with many edges, and incorporating such dense \(G\) might lead to computational difficulties and would also lead to spurious connections/edges which lack interpretability. 
                     Thus, learning a sparse graphical structure \(G\) on input functions becomes instrumental in understanding the significant relationships that drive the functional regression problem to predict the output function.<br>
+                </p>
+                <p align="justify">
+                    To solve this regression problem with \(p\) input functions and a corresponding output function, we propose a graph-induced operator-valued kernel obtained by imposing a graphical structure describing the inter-relationships among the \(p\) input functions. 
+                    When the underlying graphical structure is unknown, we propose to learn an appropriate Laplacian matrix characterizing the graphical structure, which would also aid in learning the map \(F\). 
+                    We formulate a learning problem using the proposed graph-induced OVK and devise an alternating minimization framework to solve the learning problem. 
+                    To learn \(F\) along with meaningful and important interactions in the graphical structure, a minimax concave penalty (MCP) [<a href="https://proceedings.neurips.cc/paper_files/paper/2020/file/4ef42b32bccc9485b10b8183507e5d82-Paper.pdf">Ying et al., 2020</a>]\citep{ying2020nonconvex} is used as a sparsity-inducing regularization on the Laplacian matrix. 
+                    We further extend the alternating minimization framework to learn \(F\), where each of the \(p\) constituent input functions and the output function are multi-dimensional. 
+                    We design an efficient sample-based approximation algorithm to scale the proposed algorithm to large datasets. 
+                    Further, we provide bounds on generalization error for the map obtained by solving the proposed learning problem. 
+                    An extensive empirical evaluation on synthetic and real data demonstrates the utility of the proposed learning framework. 
+                    Our experiments show that simultaneous learning of $F$ along with sparse graphical structure helps discover significant relationships among the input functions and motivates the interpretability of such relationships driving the regression problem.<br>
                 </p>
                 <script>
                     $(document).ready(function(){
