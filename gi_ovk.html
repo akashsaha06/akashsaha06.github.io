@@ -77,60 +77,6 @@
                     When the number of input functions \(z_1,z_2,\dots,z_p\) grow larger, the associated graph \(G\) might also become dense with many edges and incorporating such dense \(G\) might lead to computational difficulties and would also lead to spurious connections/edges which lack interpretability. 
                     Thus, learning a sparse graphical structure \(G\) on input functions becomes instrumental in understanding the significant relationships that drive the functional regression problem to predict the output function.<br>
                 </p>
-                <p align="justify">
-                    A functional regression problem is based on learning a function \(\mathcal{F}\), where \(\mathcal{F}:\mathcal{X}\rightarrow\mathcal{Y}\), \(\mathcal{X}\) is an appropriate input space and \(\mathcal{Y}\) is an output space of functions. 
-                    Functional regression problems (<a href="#func_reg_fig"></a>) find applications in audio-visual tasks and weather forecasting, etc. 
-                    Scalar-valued kernels \(k\), such that \(k(.,.):X\times X\rightarrow\mathbb{R}\) have been a popular tool for machine learning tasks where elements (e.g. vectors) from the input space \(X\) are mapped to a reproducing kernel Hilbert spaces (RKHS) which simplifies the task of obtaining a relationship between them. 
-                    Operator-valued kernels present an extension to scalar-valued kernels such that they map two elements from the input space to a bounded linear operator on the output space. 
-                    An operator-valued kernel can be mathematically defined as \(K(.,.):\mathcal{X}\times\mathcal{X}\rightarrow\mathcal{L(Y)}\).<br>
-                </p>
-                    <center>
-                        <figure>
-                            <img src="func_reg.PNG" alt="func_regression">
-                            <figcaption id="func_reg_fig"> Illustration of a functional regression problem.</figcaption>
-                          </figure><br>
-                    </center>
-                <p align="justify">
-                    Operator-valued kernels have shown promise in the field of functional regression problems. 
-                    Similar to scalar-valued kernels, one of the fundamental properties of operator-valued kernels is positive semi-definiteness which ensures a bijection between the positive semi-definite kernels and the associated RKHS [<a href="https://www.jmlr.org/papers/volume17/11-315/11-315.pdf">Kadri et al., 2016</a>]. 
-                    A relaxation of the positive semi-definiteness property of scalar-valued kernels has been explored [<a href="https://dl.acm.org/doi/pdf/10.1145/1015330.1015443">Ong et al., 2004</a>], where non-positive kernels have been used to map a pair of elements in the input space to an associated reproducing kernel Krein space (RKKS). 
-                    A Krein space is a direct sum of two orthogonal Hilbertian subspaces with respect to a bilinear form instead of an inner product. 
-                    In this work, we consider a special category of operator-valued kernels called generalized operator-valued kernels which might not be necessarily positive semi-definite. 
-                    <a href="#rkhs_fig"></a> illustrates the elements of the input space being mapped into the associated RKKS corresponding to a generalized operator-valued kernel and to an associated RKHS corresponding to an operator-valued kernel.<br>
-                    We derive a result (Theorem 2.4 [<a href="https://proceedings.neurips.cc/paper_files/paper/2020/file/9f319422ca17b1082ea49820353f14ab-Paper.pdf">Saha & Palaniappan, 2020</a>]) which ensures that given a generalized operator-valued kernel there exists an associated RKKS where the learning problem can be formulated. 
-                    Based on the result above, we can establish that for a generalized operator-valued kernel \(\breve{K}\), we obtain an associated RKKS where the learning problem can be formulated.
-                </p>
-                    <center>
-                        <figure>
-                            <img src="rkhs.PNG" alt="rkhs">
-                            <figcaption id="rkhs_fig"> Use of operator-valued kernel with its associated RKHS and generalized operator-valued kernel with its associated RKKS.</figcaption>
-                          </figure><br>
-                    </center>
-                <p align="justify">
-                    For the learning problem formulation, we consider a regularized loss stabilization problem consisting of a loss term and a bilinear form term.
-                    A minimization problem is avoided owing to the possible negativity of the bilinear form in the associated RKKS \(\mathcal{K}\).
-                    The loss stabilization problem essentially finds a stationary point which may not be a minimization point.<br>
-                </p>
-                    <center>
-                        <figure>
-                            <img src="motiv.PNG" alt="motiv">
-                            <figcaption id="motiv_fig"> Motivation for function-valued RKKS.</figcaption>
-                          </figure><br>
-                    </center>
-                <p align="justify">
-                    A representer theorem (Theorem 3.1 [<a href="https://proceedings.neurips.cc/paper_files/paper/2020/file/9f319422ca17b1082ea49820353f14ab-Paper.pdf">Saha & Palaniappan, 2020</a>]) for the loss stabilization problem provides a representation of the required stabilizer which can be obtained by solving a linear operator system.
-                    The linear operator system involves block operator kernel matrix which encodes the relationship between input and output functions in training data. 
-                    A proposed iterative operator-based minimum residual method called OpMINRES solves the linear operator system providing basis functions which can be used with the representer theorem to obtain the learned functional. 
-                    In OpMINRES algorithm, we incrementally build subspaces where residual norm minimization is performed in each iteration.<br><br>
-
-                    In the experiments, lip aperture functions were used for speech inversion where an audio clip is used to predict the corresponding lip aperture function. 
-                    We use residual sum of squares error which is suited for functional regression problems in our experiments. 
-                    Various combinations of input and output kernels were considered, using difference of kernels in one of them. 
-                    We used OpMINRES with various combinations of input and output kernels to create generalized operator-valued kernels. 
-                    An experiment was considered using Diffusion Tensor Imaging (DTI) dataset, where we intend to figure out the relation between two FA (fractional anisotropy) tract profiles for both healthy and unhealthy individuals. 
-                    The results obtained in each of the experiments were competitive with the benchmark methods. 
-                    Other ways to create generalized operator-valued kernel and using them for specific functional regression problems is a possible future research area.
-                </p>
                 <script>
                     $(document).ready(function(){
                         $("figcaption").each(function(index,value){
