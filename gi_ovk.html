@@ -46,7 +46,7 @@
             <div class="col-md-8" style="min-height: 100vh; height: auto;"> <!--100hv-->
                 <h2 id="exp">Learning Sparse Graphs for Functional Regression using Graph-induced Operator-valued Kernels</h2>
                 <p align="justify">
-                    Learning to predict functional output from a suitable input is characterized as a functional regression problem, which aims at learning a function-valued function \(F:\mathcal{Z}\rightarrow\Y\), where \(\mathcal{Z}\) is an appropriate input space and \(\Y\) is an output space of functions. 
+                    Learning to predict functional output from a suitable input is characterized as a functional regression problem, which aims at learning a function-valued function \(F:\mathcal{Z}\rightarrow\mathcal{Y}\), where \(\mathcal{Z}\) is an appropriate input space and \(\mathcal{Y}\) is an output space of functions. 
                     In many scenarios, multiple inputs decide the value of an output, which gives rise to functional regression problems of the form \(F:\mathcal{Z}^p\to\mathcal{Y}\), where \(p\) is the number of inputs considered. 
                     Even more interesting is the case where interactions among the \(p\) inputs can be used in a precise manner to predict \(y\in\mathcal{Y}\). 
                     In particular, we consider \(\mathcal{Z}\) to be a space of functions, hence learning a map \(F:\mathcal{Z}^p\to\mathcal{Y}\) is called a many-to-one function-to-function regression problem. 
@@ -56,6 +56,24 @@
                     In sports analytics, the movement data of different players throughout the game can let us know the influence of a particular strategy in ball possession/movement as a functional output over the duration of the game. 
                     Thus in all these applications, we notice situations where a set of input functions interact to produce an output function. 
                     Even though digital data is discrete, systems where the inherent data produced is smooth and continuous by nature, can be modeled as functions over a suitable domain to leverage the variations based on that domain.<br>
+                </p>
+                    <center>
+                        <figure>
+                            <img src="motivation_diag.png" alt="motivation_diag">
+                            <figcaption id="motivation_diag_fig"> Illustrative example of a functional regression problem, where \(z_1,z_2,z_3\) represent atmospheric pressure at 3 stations in a region, graph \(G\) depicts the inter-relationships among \(z_1,z_2,z_3\) and \(y\) represents the average temperature of the region. \(F\) maps \(z_1,z_2,z_3\) to \(y\) incorporating \(G\).</figcaption>
+                          </figure><br>
+                    </center>
+                <p align="justify">
+                    Consider a simple functional regression problem illustrated in <a href="#motivation_diag_fig"></a>, where input functions \(z_1,z_2,z_3\in\mathcal{Z}\) denote the atmospheric pressure measurements of 3 nearby weather stations and the output function \(y\in\mathcal{Y}\) denotes the average temperature of the region, throughout a particular day. 
+                    For predicting \(y\), considering the input functions \(z_1,z_2\) and \(z_3\) without any relation among them may be restrictive as inherent relations between the input functions may dictate the generation of \(y\). 
+                    In order to capture interactions among \(z_1,z_2,z_3\), we introduce a graph structure \(G\) between \(z_1,z_2\) and \(z_3\) in <a href="#motivation_diag_fig"></a>, where the nodes of \(G\) represent \(z_i\)'s and the edges depict potential relations among them. 
+                    The graph structure \(G\) will be useful in representing the influences and inter-relations among \(z_i\)'s, which can be useful in the prediction of \(y\in\mathcal{Y}\) using \(F\). 
+                    We propose a framework for combining the impact of \(z_1,z_2,\dots,z_p\) with the additional information of \(G\) to predict \(y\). 
+                    In determining the output function \(y\), the graphical structure \(G\) on the input functions may be known from domain knowledge and can possibly be directly incorporated to learn \(F\). 
+                    A more interesting case is when \(G\) is unknown and needs to be learned along with \(F\). 
+                    Learning the graph structure \(G\) would help to discover interactions among \(z_i\)'s which facilitate predicting \(y\). 
+                    When the number of input functions \(z_1,z_2,\dots,z_p\) grow larger, the associated graph \(G\) might also become dense with many edges and incorporating such dense \(G\) might lead to computational difficulties and would also lead to spurious connections/edges which lack interpretability. 
+                    Thus, learning a sparse graphical structure \(G\) on input functions becomes instrumental in understanding the significant relationships that drive the functional regression problem to predict the output function.<br>
                 </p>
                 <p align="justify">
                     A functional regression problem is based on learning a function \(\mathcal{F}\), where \(\mathcal{F}:\mathcal{X}\rightarrow\mathcal{Y}\), \(\mathcal{X}\) is an appropriate input space and \(\mathcal{Y}\) is an output space of functions. 
